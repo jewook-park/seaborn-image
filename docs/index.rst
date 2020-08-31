@@ -83,6 +83,7 @@ Contents
    :maxdepth: 1
 
    Quickstart <quickstart>
+   Tutorial <tutorial>
    How-to? <how_to>
    Gallery <gallery>
    License <license>

@@ -5,8 +5,28 @@ import sphinx_bootstrap_theme
 project = "seaborn-image"
 author = "Sarthak Jariwala"
 copyright = f"{datetime.now().year}, {author}"
-extensions = ["sphinx.ext.autodoc", "sphinx.ext.napoleon", "sphinxcontrib.images"]
+extensions = [
+    "sphinx.ext.autodoc",
+    "sphinx.ext.napoleon",
+    "sphinxcontrib.images",
+    "nbsphinx",
+    "matplotlib.sphinxext.plot_directive",
+]
 html_static_path = ["_static"]
+
+# nbsphinx settings
+nbsphinx_execute_arguments = [
+    "--InlineBackend.figure_formats={'svg', 'pdf'}",
+    "--InlineBackend.rc={'figure.dpi': 96}",
+]
+
+nbsphinx_prompt_width = 0
+
+# configure matplotlib plot-directive
+plot_include_source = True
+plot_formats = [("png", 90)]
+plot_html_show_formats = False
+plot_html_show_source_link = False
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
@@ -22,7 +42,7 @@ master_doc = "index"
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ["_build"]
+exclude_patterns = ["_build", "**.ipynb_checkpoints"]
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 # default_role = None
@@ -64,6 +84,7 @@ html_theme_options = {
     "bootstrap_version": "3",
     "navbar_links": [
         ("Quickstart", "quickstart"),
+        ("Tutorial", "tutorial"),
         ("How-to?", "how_to"),
         ("Gallery", "gallery"),
         ("Releases", "https://github.com/SarthakJariwala/seaborn-image/releases", True),
