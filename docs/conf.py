@@ -10,6 +10,7 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinxcontrib.images",
     "nbsphinx",
+    "sphinx_gallery.gen_gallery",
     "matplotlib.sphinxext.plot_directive",
 ]
 html_static_path = ["_static"]
@@ -23,10 +24,23 @@ nbsphinx_execute_arguments = [
 nbsphinx_prompt_width = 0
 
 # configure matplotlib plot-directive
+# for matplotlib plot-directive
 plot_include_source = True
 plot_formats = [("png", 90)]
 plot_html_show_formats = False
 plot_html_show_source_link = False
+
+# sphinx-gallery
+sphinx_gallery_conf = {
+    "examples_dirs": "../examples",  # path to your example scripts
+    "gallery_dirs": "auto_examples",  # path to where to save gallery generated output
+    "image_scrapers": ("matplotlib"),  # collect images created
+    "capture_repr": (),
+    "download_all_examples": False,
+    "line_numbers": False,
+    "show_memory": False,
+    "thumbnail_size": (500, 500),
+}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
@@ -86,7 +100,7 @@ html_theme_options = {
         ("Quickstart", "quickstart"),
         ("Tutorial", "tutorial"),
         ("How-to?", "how_to"),
-        ("Gallery", "gallery"),
+        ("Gallery", "auto_examples/index"),
         ("Releases", "https://github.com/SarthakJariwala/seaborn-image/releases", True),
         ("Reference", "reference"),
     ],

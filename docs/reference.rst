@@ -18,6 +18,19 @@ imghist
 .. autofunction:: seaborn_image.imghist
 
 
+ImageGrid
+----------
+
+.. autoclass:: seaborn_image.ImageGrid
+   :members:
+
+
+rgbplot
+-------
+
+.. autofunction:: seaborn_image.rgbplot
+
+
 filterplot
 ----------
 
@@ -41,6 +54,15 @@ seaborn_image._context
 ----------------------
 
 .. automodule:: seaborn_image._context
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+seaborn_image.utils
+-------------------
+
+.. automodule:: seaborn_image.utils
    :members:
    :undoc-members:
    :show-inheritance:

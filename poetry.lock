@@ -141,7 +141,7 @@ requests = ">=2.7.9"
 [[package]]
 category = "dev"
 description = "Cross-platform colored terminal text."
-marker = "sys_platform == \"win32\" or platform_system == \"Windows\" or python_version >= \"3.0\" and sys_platform == \"win32\""
+marker = "platform_system == \"Windows\" or sys_platform == \"win32\""
 name = "colorama"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
@@ -978,6 +978,17 @@ setuptools = "*"
 
 [[package]]
 category = "dev"
+description = "A Sphinx extension that builds an HTML version of any Python script and puts it into an examples gallery."
+name = "sphinx-gallery"
+optional = false
+python-versions = ">=3.5"
+version = "0.8.1"
+
+[package.dependencies]
+sphinx = ">=1.8.3"
+
+[[package]]
+category = "dev"
 description = "sphinxcontrib-applehelp is a sphinx extension which outputs Apple help books"
 name = "sphinxcontrib-applehelp"
 optional = false
@@ -1011,21 +1022,6 @@ version = "1.0.3"
 [package.extras]
 lint = ["flake8", "mypy", "docutils-stubs"]
 test = ["pytest", "html5lib"]
-
-[[package]]
-category = "dev"
-description = "Sphinx extension for thumbnails"
-name = "sphinxcontrib-images"
-optional = false
-python-versions = "*"
-version = "0.9.2"
-
-[package.dependencies]
-requests = ">2.2,<3"
-
-[package.dependencies.sphinx]
-python = ">=3.0"
-version = ">=2.0"
 
 [[package]]
 category = "dev"
@@ -1157,11 +1153,19 @@ socks = ["PySocks (>=1.5.6,<1.5.7 || >1.5.7,<2.0)"]
 
 [[package]]
 category = "dev"
-description = "Character encoding aliases for legacy web content"
-name = "webencodings"
+description = "A rewrite of the builtin doctest module"
+name = "xdoctest"
 optional = false
 python-versions = "*"
-version = "0.5.1"
+version = "0.14.0"
+
+[package.dependencies]
+six = "*"
+
+[package.extras]
+all = ["six", "pytest", "pytest-cov", "codecov", "scikit-build", "cmake", "ninja", "pybind11", "pygments", "colorama"]
+optional = ["pygments", "colorama"]
+tests = ["pytest", "pytest-cov", "codecov", "scikit-build", "cmake", "ninja", "pybind11"]
 
 [[package]]
 category = "main"
@@ -1177,7 +1181,8 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "2211fc6ba4ee52d9da06c8df11bab6160503bd7a6fba892f28e0609277b72408"
+content-hash = "29075ce4b3971769a38868761c5beae06aa2dad1d7d2f92a3378cdf90588d176"
+lock-version = "1.0"
 python-versions = "^3.6"
 
 [metadata.files]
@@ -1740,6 +1745,9 @@ sphinx = [
 sphinx-bootstrap-theme = [
     {file = "sphinx-bootstrap-theme-0.7.1.tar.gz", hash = "sha256:571e43ccb76d4c6c06576aa24a826b6ebc7adac45a5b54985200128806279d08"},
 ]
+sphinx-gallery = [
+    {file = "sphinx-gallery-0.8.1.tar.gz", hash = "sha256:92b7ae7850f770c3f605cfbadc116f1177771f6eb50e22052e4226ebba9f3449"},
+]
 sphinxcontrib-applehelp = [
     {file = "sphinxcontrib-applehelp-1.0.2.tar.gz", hash = "sha256:a072735ec80e7675e3f432fcae8610ecf509c5f1869d17e2eecff44389cdbc58"},
     {file = "sphinxcontrib_applehelp-1.0.2-py2.py3-none-any.whl", hash = "sha256:806111e5e962be97c29ec4c1e7fe277bfd19e9652fb1a4392105b43e01af885a"},
@@ -1751,10 +1759,6 @@ sphinxcontrib-devhelp = [
 sphinxcontrib-htmlhelp = [
     {file = "sphinxcontrib-htmlhelp-1.0.3.tar.gz", hash = "sha256:e8f5bb7e31b2dbb25b9cc435c8ab7a79787ebf7f906155729338f3156d93659b"},
     {file = "sphinxcontrib_htmlhelp-1.0.3-py2.py3-none-any.whl", hash = "sha256:3c0bc24a2c41e340ac37c85ced6dafc879ab485c095b1d65d2461ac2f7cca86f"},
-]
-sphinxcontrib-images = [
-    {file = "sphinxcontrib-images-0.9.2.tar.gz", hash = "sha256:f0d5d720b69789c83bf1e6925093b32ab4cd6f925d24ecded56109fc0d0eb174"},
-    {file = "sphinxcontrib_images-0.9.2-py2.py3-none-any.whl", hash = "sha256:db8d1b9cec0b71ba59ce1919d199a7d121bb7b916e96fb883c4f97b3f6bc6241"},
 ]
 sphinxcontrib-jsmath = [
     {file = "sphinxcontrib-jsmath-1.0.1.tar.gz", hash = "sha256:a9925e4a4587247ed2191a22df5f6970656cb8ca2bd6284309578f2153e0c4b8"},
@@ -1820,9 +1824,9 @@ urllib3 = [
     {file = "urllib3-1.25.9-py2.py3-none-any.whl", hash = "sha256:88206b0eb87e6d677d424843ac5209e3fb9d0190d0ee169599165ec25e9d9115"},
     {file = "urllib3-1.25.9.tar.gz", hash = "sha256:3018294ebefce6572a474f0604c2021e33b3fd8006ecd11d62107a5d2a963527"},
 ]
-webencodings = [
-    {file = "webencodings-0.5.1-py2.py3-none-any.whl", hash = "sha256:a0af1213f3c2226497a97e2b3aa01a7e4bee4f403f95be16fc9acd2947514a78"},
-    {file = "webencodings-0.5.1.tar.gz", hash = "sha256:b36a1c245f2d304965eb4e0a82848379241dc04b865afcc4aab16748587e1923"},
+xdoctest = [
+    {file = "xdoctest-0.14.0-py2.py3-none-any.whl", hash = "sha256:312c0afa79a0a6e29737cc0bc4acdf8299133b70ce7c4d7ed254d6950ec34fff"},
+    {file = "xdoctest-0.14.0.tar.gz", hash = "sha256:f1a218eacb89401cb0547beba684a4d649d1f09b2492a346816c0cf35e36257c"},
 ]
 zipp = [
     {file = "zipp-3.1.0-py3-none-any.whl", hash = "sha256:aa36550ff0c0b7ef7fa639055d797116ee891440eac1a56f378e2d3179e0320b"},
